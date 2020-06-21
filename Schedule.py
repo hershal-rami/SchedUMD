@@ -6,17 +6,17 @@ Can add/delete/specify courses within
 
 class Schedule:
 
-    def __init__(self, courses):
-        self.courses = courses      #Array of course objects
+    def __init__(self):
+        self.courses = []      #Array of course objects
 
     def getCourses(self):
-        #return courses array
-        #might not need this, can just do schedule.courses
+        return courses
 
     def addCourse(self, course):
-        #add course to array
+        self.courses.append(course)
 
     def removeCourse(self, course):
+        pass
         #remove course from array
 
     #can add other functions to manipulate array later
