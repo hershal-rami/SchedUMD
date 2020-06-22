@@ -12,28 +12,28 @@ Ben Davidson
 import requests
 import Schedule
 
-def queryById(courseID):
-    #Make call to umd.io to get all sections with courseID
+def query_by_Id(courseID):
+    #Make call to umd.io to get all sections with given courseID
     r = requests.get('https://api.umd.io/v1/courses/' + courseID)
     return r
 
-def addCourseToSchedule(schedule, course):
+def add_course_to_schedule(schedule, course):
     schedule.addCourse(course)
 
-def removeCourseFromSchedule(schedule, course):
+def remove_course_from_schedule(schedule, course):
     schedule.removeCourse(course)
 
-def generatePossibilities(schedule):
+def generate_possibilities(schedule):
     #Brute force schedules, return some data structure containing of them
     pass
 
 sch = Schedule.Schedule()
-addCourseToSchedule(sch, 'CMSC351')
-addCourseToSchedule(sch, 'CMSC216')
-addCourseToSchedule(sch, 'HACS200')
+add_course_to_schedule(sch, 'CMSC351')
+add_course_to_schedule(sch, 'CMSC216')
+add_course_to_schedule(sch, 'HACS200')
 
 print(sch.courses)
 print("=======================")
 
 for course in sch.courses:
-    print(queryById(course).json()[0].get("course_id"))
+    print(query_by_Id(course).json()[0].get("course_id"))

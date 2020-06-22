@@ -9,15 +9,14 @@ class Schedule:
     def __init__(self):
         self.courses = []      #Array of course objects
 
-    def getCourses(self):
+    def get_courses(self):
         return courses
 
-    def addCourse(self, course):
+    def add_course(self, course):
         self.courses.append(course)
 
-    def removeCourse(self, course):
-        pass
-        #remove course from array
+    def remove_course(self, course):
+        self.courses.remove(course)
 
     #can add other functions to manipulate array later
 
