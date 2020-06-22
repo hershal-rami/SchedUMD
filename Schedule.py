@@ -10,7 +10,7 @@ class Schedule:
         self.courses = []      #Array of course objects
 
     def get_courses(self):
-        return courses
+        return self.courses
 
     def add_course(self, course):
         self.courses.append(course)

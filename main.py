@@ -18,15 +18,16 @@ def query_by_Id(courseID):
     return r
 
 def add_course_to_schedule(schedule, course):
-    schedule.addCourse(course)
+    schedule.add_course(course)
 
 def remove_course_from_schedule(schedule, course):
-    schedule.removeCourse(course)
+    schedule.remove_course(course)
 
 def generate_possibilities(schedule):
     #Brute force schedules, return some data structure containing of them
     pass
 
+'''
 sch = Schedule.Schedule()
 
 add_course_to_schedule(sch, 'CMSC351')
@@ -38,3 +39,18 @@ print("=======================")
 
 for course in sch.courses:
     print(query_by_Id(course).json()[0].get("course_id"))
+'''
+sch = Schedule.Schedule()
+
+print("Please enter a course ID. Enter a blank line to finish.")
+
+while(True):
+    course_id = input("Course ID: ")
+
+    if(not course_id): # empty string is false
+        break
+
+    sch.add_course(course_id)
+
+print(sch.get_courses())
+
