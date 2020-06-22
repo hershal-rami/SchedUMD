@@ -28,6 +28,7 @@ def generate_possibilities(schedule):
     pass
 
 sch = Schedule.Schedule()
+
 add_course_to_schedule(sch, 'CMSC351')
 add_course_to_schedule(sch, 'CMSC216')
 add_course_to_schedule(sch, 'HACS200')

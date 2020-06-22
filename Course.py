@@ -14,16 +14,16 @@ class Course:
                 self.number = number              #Second half of secitonID (0101)
                 self.seats = seats                #Total number of seats for section
                 self.meetings = meetings          #Array housing dictionaries of meeting info for section
-                                                '''
-                                                each entry in array represents a meeting on weekly basis
-                                                dictionary defined as follows
-                                                        "days" -> string         (e.g.)
-                                                        "room" -> string         (e.g.)
-                                                        "building" -> string     (e.g.)
-                                                        "classtype" -> string    (e.g.)
-                                                        "start_time" -> string   (e.g.)
-                                                        "end_time" -> string     (e.g.)
-                                                '''
+                                                
+                                                #each entry in array represents a meeting on weekly basis
+                                                #dictionary defined as follows
+                                                #        "days" -> string         (e.g.)
+                                                #        "room" -> string         (e.g.)
+                                                #        "building" -> string     (e.g.)
+                                                #        "classtype" -> string    (e.g.)
+                                                #        "start_time" -> string   (e.g.)
+                                                #        "end_time" -> string     (e.g.)
+
                 self.open_seats = open_seats      #Number of remaining seats
                 self.waitlist = waitlist          #Number of people on the waitlist
                 self.instructors = instructors    #Array of professor names for section (e.g.)

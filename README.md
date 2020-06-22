@@ -1,4 +1,9 @@
 # umd-schedule-builder
+Set-Up:
+-Install Python 3.8.3
+-Use pip to install requests
+    The command will be `pip install requests`
+
 
 General Plan:
 -Use python
