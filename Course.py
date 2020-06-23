@@ -15,9 +15,6 @@ class Course:
         
         #out += query_by_Id(course).json()[0].get("course_id"))
 
-<<<<<<< HEAD
-        self.course_id = course_id                       # The associated course id (ENGL101)
-=======
         self.course_id = course_id              # The associated course id (ENGL101)
 
         self.sections = []
@@ -26,7 +23,6 @@ class Course:
         for section in sectionStrings:
             self.sections.append(Section.Section(section))
         
->>>>>>> 182e3f49f3a9cd2156a3e0ee3722fe5cd9f1fd7c
         self.sections = r.get("sections")                # List of Section objects for the course (0101, 0102, 0201, etc.)
         self.semester = r.get("semester")                # Numeric representation YYYYMM (202001)
         self.credits = r.get("credits")                  # Number of credits for the course (2, 3, 4, etc.)

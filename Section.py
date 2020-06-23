@@ -8,27 +8,6 @@ import requests
 
 class Section:
 
-<<<<<<< HEAD
-    def __init__(self, ):
-        self.number = number              # Second half of sectionID (0101)
-        self.instructors = instructors    # Array of professor names for section (e.g.)
-        self.seats = seats                # Total number of seats for section
-        self.open_seats = open_seats      # Number of remaining seats
-        self.waitlist = waitlist          # Number of people on the waitlist
-                
-        self.meetings = meetings          # Dictionary housing meeting info for the section
-        '''   
-            dictionary defined as follows
-            First element in the list represents lecture, second represents discussions
-            (if there are no discussions then the list will be of size 1)
-                "days" -> list         (e.g.) [MWF, MW]
-                "room" -> list         (e.g.) [0324, 2118]
-                "building" -> list     (e.g.) [IRB, CSI]
-                "classtype" -> list    (e.g.) [Lecture, Discussion]
-                "start_time" -> list   (e.g.) [3:00pm, 12:00pm]
-                "end_time" -> list     (e.g.) [3:50pm, 12:50pm]
-        '''
-=======
     def __init__(self, section_id):
         
         r = requests.get('https://api.umd.io/v1/courses/sections/' + section_id).json()[0]
@@ -87,4 +66,3 @@ class Section:
 
             
 
->>>>>>> 182e3f49f3a9cd2156a3e0ee3722fe5cd9f1fd7c
