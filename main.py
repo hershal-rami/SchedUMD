@@ -12,50 +12,21 @@ Ben Davidson
 import requests
 import Schedule
 
-def query_by_Id(courseID):
-    #Make call to umd.io to get all sections with given courseID
-    r = requests.get('https://api.umd.io/v1/courses/' + courseID)
-    return r
-
-def add_course_to_schedule(schedule, course):
-    schedule.add_course(course)
-
-def remove_course_from_schedule(schedule, course):
-    schedule.remove_course(course)
-
 def generate_possibilities(schedule):
     #Brute force schedules, return some data structure containing of them
     pass
 
-'''
-sch = Schedule.Schedule()
+benSc = Schedule.Schedule()
+hershSc = Schedule.Schedule()
 
-add_course_to_schedule(sch, 'CMSC351')
-add_course_to_schedule(sch, 'CMSC216')
-add_course_to_schedule(sch, 'HACS200')
+benCourses = ['CMSC351', 'CMSC216', 'HACS200', 'MATH241', 'CMSC389O', 'GEOG170']
+hershCourses = ['CMSC351', 'CMSC330', 'STAT400', 'HACS200', 'HACS208N', 'CMSC389O']
 
-print(sch.courses)
-print("=======================")
+benSc.add_courses(benCourses)
+hershSc.add_courses(hershCourses)
 
-for course in sch.courses:
-    print(query_by_Id(course).json()[0].get("course_id"))
-'''
+print("Ben:")
+print(benSc)
 
-
-sch = Schedule.Schedule()
-
-print("Please enter a course ID. Enter a blank line to finish.")
-
-# Generate list of courses from user
-while(True):
-    course_id = input("Course ID: ")
-
-    if(not course_id): # empty string is false
-        break
-
-    # TODO create Course objects instead of Strings
-    sch.add_course(course)
-
-print(sch.get_courses())
-
-# Generate list of sections for each course
+print("Hershal:")
+print(hershSc)
