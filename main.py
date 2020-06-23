@@ -17,40 +17,22 @@ def query_by_Id(courseID):
     r = requests.get('https://api.umd.io/v1/courses/' + courseID)
     return r
 
-def add_course_to_schedule(schedule, course):
-    schedule.add_course(course)
-
-def remove_course_from_schedule(schedule, course):
-    schedule.remove_course(course)
-
 def generate_possibilities(schedule):
     #Brute force schedules, return some data structure containing of them
     pass
 
-'''
-sch = Schedule.Schedule()
+benSc = Schedule.Schedule()
+hershSc = Schedule.Schedule()
 
-add_course_to_schedule(sch, 'CMSC351')
-add_course_to_schedule(sch, 'CMSC216')
-add_course_to_schedule(sch, 'HACS200')
+benClasses = ['CMSC351', 'CMSC216', 'HACS200', 'MATH241', 'CMSC389O', 'GEOG170']
+hershClasses = ['CMSC351', 'CMSC330', 'STAT400', 'HACS200', 'HACS208N', 'CMSC389O']
 
-print(sch.courses)
-print("=======================")
+for c in benClasses:
+    benSc.add_course(c)
 
-for course in sch.courses:
-    print(query_by_Id(course).json()[0].get("course_id"))
-'''
-sch = Schedule.Schedule()
+for c in hershClasses:
+    hershSc.add_course(c)
 
-print("Please enter a course ID. Enter a blank line to finish.")
+#print("Ben:")
 
-while(True):
-    course_id = input("Course ID: ")
-
-    if(not course_id): # empty string is false
-        break
-
-    sch.add_course(course_id)
-
-print(sch.get_courses())
-
+#print("Hershal " + hershClasses)
