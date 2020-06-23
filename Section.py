@@ -20,15 +20,13 @@ class Section:
         
         self.meetings = r.get("meetings")          # Dictionary housing meeting info for the section
            
-                                                # dictionary defined as follows
-                                                #First element in the list represents lecture, second represents discussions
-                                                #(if there are no discussions then the list will be of size 1)
-                                                        #"days" -> list         (e.g.) [MWF, MW]
-                                                       # "room" -> list         (e.g.) [0324, 2118]
-                                                       # "building" -> list     (e.g.) [IRB, CSI]
-                                                       # "classtype" -> list    (e.g.) [Lecture, Discussion]
-                                                        #"start_time" -> list   (e.g.) [3:00pm, 12:00pm]
-                                                       # "end_time" -> list     (e.g.) [3:50pm, 12:50pm]
+                                                # Dictionary defined as follows                                        
+                                                        # "days" -> string         (e.g.) MWF, MW
+                                                        # "room" -> string         (e.g.) 0324, 2118
+                                                        # "building" -> string     (e.g.) IRB, CSI
+                                                        # "classtype" -> string    (e.g.) Lecture, Discussion
+                                                        # "start_time" -> string   (e.g.) 3:00pm, 12:00pm
+                                                        # "end_time" -> string     (e.g.) 3:50pm, 12:50pm
                 
 
     def __str__(self):
