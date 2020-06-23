@@ -1,40 +1,36 @@
 '''
-Will hold all course objects for a schedule.
-Making this a class will allow multiple schedules to be saved.
-Can add/delete/specify courses within
+Holds all Section objects for a Schedule
+Is a more specific instance of CourseList
 '''
 
-import Course
+import Section
 
 class Schedule:
 
     def __init__(self):
-        self.courses = []      #Array of course objects
+        self.sections = []      # Array of Section objects
 
     def __str__(self):
-        out = ""
-        for course in self.courses:
-            out += str(course) + "\n"
+        out = "{"
+        for section in self.sections:
+            out += section.course_id + ", "
+        out = out[:-2]
+        out += "}"
 
         return out
 
-    def get_courses(self):
-        return self.courses
+    def add_section(self, section):
+        self.sections.append(Section.Section(section))
+    
+    def add_sections(self, sections):
+        for section in sections:
+            self.add_section(section)
+    
+    def remove_section(self, section):
+        self.sections.remove(section)
+    
+    def remove_sections(self, sections):
+        for section in sections:
+            self.remove_section(section)
 
-    def add_course(self, course):
-        self.courses.append(Course.Course(course))
-
-    def add_courses(self, courses):
-        for c in courses:
-            self.add_course(c)
-
-    def remove_course(self, course):
-        self.courses.remove(course)
-
-    def remove_courses(self, courses):
-        for c in courses:
-            self.remove_course(c)
-    #can add other functions to manipulate array later
-
-
-
+    # Can add other functions to manipulate array later

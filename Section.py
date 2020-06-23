@@ -1,7 +1,7 @@
 '''
 Class to house all data for a section of a Course
 
-i.e. The location, time, professor, etc. for CMSC132-0101
+i.e. location, time, professor, etc. for CMSC132-0101
 '''
 
 import requests
@@ -12,6 +12,7 @@ class Section:
         
         r = requests.get('https://api.umd.io/v1/courses/sections/' + section_id).json()[0]
     
+        self.section_id = section_id;              # Course code plus sectionID ("CMSC250-0101")
         self.number = r.get("number")              # Second half of sectionID (0101)
         self.instructors = r.get("instructors")    # Array of professor names for section (e.g.)
         self.seats = r.get("seats")                # Total number of seats for section

@@ -10,14 +10,14 @@ Ben Davidson
 '''
 
 import requests
-import Schedule
+import CourseList
 
-def generate_possibilities(schedule):
+def generate_possibilities(course_list):
     #Brute force schedules, return some data structure containing of them
     pass
 
-benSc = Schedule.Schedule()
-hershSc = Schedule.Schedule()
+benSc = CourseList.CourseList()
+hershSc = CourseList.CourseList()
 
 benCourses = ['CMSC351', 'CMSC216', 'HACS200', 'MATH241', 'CMSC389O', 'GEOG170']
 hershCourses = ['CMSC351', 'CMSC330', 'STAT400', 'HACS200', 'HACS208N', 'CMSC389O']

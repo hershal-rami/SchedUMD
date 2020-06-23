@@ -1,7 +1,7 @@
 '''
-Class to house data on all sections of a course
+Class to house all data on a course
 
-i.e. all CMSC351 sections
+i.e. Credits, semester, department, etc. for CMSC132
 '''
 
 import requests
