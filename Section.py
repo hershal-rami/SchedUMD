@@ -20,7 +20,7 @@ class Section:
         
         self.meetings = r.get("meetings")          # Dictionary housing meeting info for the section
            
-                                               # dictionary defined as follows
+                                                # dictionary defined as follows
                                                 #First element in the list represents lecture, second represents discussions
                                                 #(if there are no discussions then the list will be of size 1)
                                                         #"days" -> list         (e.g.) [MWF, MW]
@@ -34,9 +34,7 @@ class Section:
     def __str__(self):
         out = ""
 
-        out += "@@@NEW SECTION@@@\n"
-        out += "----section_id----\n"
-        out += number
+        out += "@@@@" + number + "@@@@\n"
         out += "\n----instructors----\n"
         for instructor in self.instructors:
             out += "- Instructor: " + instructor
