@@ -14,7 +14,7 @@ class Course:
         
         #out += query_by_Id(course).json()[0].get("course_id"))
 
-        self.course_id = course_id              # The associated course id (ENGL101)
+        self.course_id = course_id                       # The associated course id (ENGL101)
         self.sections = r.get("sections")                # List of Section objects for the course (0101, 0102, 0201, etc.)
         self.semester = r.get("semester")                # Numeric representation YYYYMM (202001)
         self.credits = r.get("credits")                  # Number of credits for the course (2, 3, 4, etc.)
@@ -27,9 +27,7 @@ class Course:
     def __str__(self):
         out = "" 
 
-        out += "====NEW COURSE====\n"
-        out += "----course_id----\n"
-        out += self.course_id
+        out += "====" + self.course_id + "====\n"
         out += "\n----sections----\n"
         for section in self.sections:
             out += str(section) + "\n"
