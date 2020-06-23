@@ -12,11 +12,6 @@ Ben Davidson
 import requests
 import Schedule
 
-def query_by_Id(courseID):
-    #Make call to umd.io to get all sections with given courseID
-    r = requests.get('https://api.umd.io/v1/courses/' + courseID)
-    return r
-
 def generate_possibilities(schedule):
     #Brute force schedules, return some data structure containing of them
     pass
@@ -35,3 +30,5 @@ print(benSc)
 
 print("Hershal:")
 print(hershSc)
+
+print("Course:")
