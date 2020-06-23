@@ -9,6 +9,13 @@ class Schedule:
     def __init__(self):
         self.courses = []      #Array of course objects
 
+    def __str__(self):
+        out = ""
+        for course in self.courses:
+            out += course + "\n"
+
+        return out
+
     def get_courses(self):
         return self.courses
 

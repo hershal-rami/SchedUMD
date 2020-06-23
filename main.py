@@ -33,6 +33,8 @@ for c in benClasses:
 for c in hershClasses:
     hershSc.add_course(c)
 
-#print("Ben:")
+print("Ben:")
+print(benSc)
 
-#print("Hershal " + hershClasses)
+print("Hershal:")
+print(hershSc)
