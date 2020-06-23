@@ -40,17 +40,22 @@ print("=======================")
 for course in sch.courses:
     print(query_by_Id(course).json()[0].get("course_id"))
 '''
+
+
 sch = Schedule.Schedule()
 
 print("Please enter a course ID. Enter a blank line to finish.")
 
+# Generate list of courses from user
 while(True):
     course_id = input("Course ID: ")
 
     if(not course_id): # empty string is false
         break
 
-    sch.add_course(course_id)
+    # TODO create Course objects instead of Strings
+    sch.add_course(course)
 
 print(sch.get_courses())
 
+# Generate list of sections for each course

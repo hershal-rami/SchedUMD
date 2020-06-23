@@ -24,3 +24,15 @@ To Do:
 -Pick classes closest to a certain location/optimizing schedules for distance
 -Filter out undesired buildings
 -Write README once complete
+
+
+Get a course from the user
+Get a list of all sections for that course
+print out all sections with info
+
+
+-------------------
+user will give us a list of courses they want on their schedule
+we get the list of sections for each course from umd.io
+-store a list of Courses and Course object stores a list of sections
+-create a list of Schedules, where each Schedule object is a possibility that stores a list of sections
