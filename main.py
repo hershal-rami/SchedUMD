@@ -24,14 +24,11 @@ def generate_possibilities(schedule):
 benSc = Schedule.Schedule()
 hershSc = Schedule.Schedule()
 
-benClasses = ['CMSC351', 'CMSC216', 'HACS200', 'MATH241', 'CMSC389O', 'GEOG170']
-hershClasses = ['CMSC351', 'CMSC330', 'STAT400', 'HACS200', 'HACS208N', 'CMSC389O']
+benCourses = ['CMSC351', 'CMSC216', 'HACS200', 'MATH241', 'CMSC389O', 'GEOG170']
+hershCourses = ['CMSC351', 'CMSC330', 'STAT400', 'HACS200', 'HACS208N', 'CMSC389O']
 
-for c in benClasses:
-    benSc.add_course(c)
-
-for c in hershClasses:
-    hershSc.add_course(c)
+benSc.add_courses(benCourses)
+hershSc.add_courses(hershCourses)
 
 print("Ben:")
 print(benSc)

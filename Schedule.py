@@ -22,9 +22,16 @@ class Schedule:
     def add_course(self, course):
         self.courses.append(course)
 
+    def add_courses(self, courses):
+        for c in courses:
+            self.add_course(c)
+
     def remove_course(self, course):
         self.courses.remove(course)
 
+    def remove_courses(self, courses):
+        for c in courses:
+            self.remove_course(c)
     #can add other functions to manipulate array later
 
 
