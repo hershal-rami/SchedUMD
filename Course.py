@@ -20,10 +20,17 @@ class Course:
         self.sections = []
         
         sectionStrings = r.get("sections")
+        appStr = ""
         for section in sectionStrings:
+            appStr += section + ","
+
+        appStr = appStr[:-1]
+        secr = requests.get('https://api.umd.io/v1/courses/sections/' + appStr).json()
+
+        for section in secr:
             self.sections.append(Section.Section(section))
         
-        self.sections = r.get("sections")                # List of Section objects for the course (0101, 0102, 0201, etc.)
+        #self.sections = r.get("sections")                # List of Section objects for the course (0101, 0102, 0201, etc.)
         self.semester = r.get("semester")                # Numeric representation YYYYMM (202001)
         self.credits = r.get("credits")                  # Number of credits for the course (2, 3, 4, etc.)
         self.dept_id = r.get("dept_id")                  # 4 letter department code, useful for narrowing down search (CMSC, MATH, etc.)
@@ -45,7 +52,7 @@ class Course:
         out += self.dept_id
         out += "\n----grading_method----\n"
         for method in self.grading_method:
-            out += str(section) + "\n"
+            out += str(method) + "\n"
         out += "----core----\n"
         for core in self.core:
             out += str(core) + "\n"
