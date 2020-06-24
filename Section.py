@@ -10,12 +10,12 @@ class Section:
 
     def __init__(self, section_data):
     
-        self.section_id = section_id;              # Course code plus sectionID ("CMSC250-0101")
-        self.number = r.get("number")              # Second half of sectionID (0101)
-        self.instructors = r.get("instructors")    # Array of professor names for section (e.g. {"Yoon", "Shankar"})
-        self.seats = r.get("seats")                # Total number of seats for section
-        self.open_seats = r.get("open_seats")      # Number of remaining seats
-        self.waitlist = r.get("waitlist")          # Number of people on the waitlist
+        self.section_id = section_data.get("section_id");     # Course code plus sectionID ("CMSC250-0101")
+        self.number = section_data.get("number")              # Second half of sectionID (0101)
+        self.instructors = section_data.get("instructors")    # Array of professor names for section (e.g. {"Yoon", "Shankar"})
+        self.seats = section_data.get("seats")                # Total number of seats for section
+        self.open_seats = section_data.get("open_seats")      # Number of remaining seats
+        self.waitlist = section_data.get("waitlist")          # Number of people on the waitlist
         
         self.meetings = section_data.get("meetings")          # Dictionary housing meeting info for the section
            
@@ -26,12 +26,12 @@ class Section:
                 # "classtype" -> string    (e.g.) Lecture, Discussion
                 # "start_time" -> string   (e.g.) 3:00pm, 12:00pm
                 # "end_time" -> string     (e.g.) 3:50pm, 12:50pm
-                
+
 
     def __str__(self):
         out = ""
 
-        out += "@@@@" + self.number + "@@@@\n"
+        out += "@@@@" + self.section_id + "@@@@\n"
         out += "\n----instructors----\n"
         for instructor in self.instructors:
             out += "- Instructor: " + instructor
@@ -53,10 +53,10 @@ class Section:
             out += "\n--classtype--\n"
             out += meeting.get("classtype")
             out += "\n--start_time--\n"
-            out += meeting.get("end_time")
-            out += "\n--end_time--\n"
             out += meeting.get("start_time")
-        out += "@@@END SECTION@@\n"
+            out += "\n--end_time--\n"
+            out += meeting.get("end_time")
+        out += "\n@@@END SECTION@@\n"
         return out
 
 

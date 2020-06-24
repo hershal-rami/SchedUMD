@@ -11,7 +11,7 @@ class Course:
 
     def __init__(self, course_id):
             
-        r = requests.get('https://api.umd.io/v1/courses/' + course_id).json()[0]
+        r = requests.get('https://api.umd.io/v1/courses/' + course_id, verify=False).json()[0]
         
         #out += query_by_Id(course).json()[0].get("course_id"))
 
@@ -26,7 +26,7 @@ class Course:
             appStr += section + ","
 
         appStr = appStr[:-1]
-        secr = requests.get('https://api.umd.io/v1/courses/sections/' + appStr).json()
+        secr = requests.get('https://api.umd.io/v1/courses/sections/' + appStr, verify=False).json()
 
         for section in secr:
             self.sections.append(Section.Section(section))
@@ -44,9 +44,6 @@ class Course:
         out = "" 
 
         out += "====" + self.course_id + "====\n"
-        out += "\n----sections----\n"
-        for section in self.sections:
-            out += str(section) + "\n"
         out += "----credits----\n"
         out += self.credits
         out += "\n----dept_id----\n"
@@ -63,7 +60,9 @@ class Course:
         out += "----relationships----\n"
         for relationship in self.relationships:
             out += str(relationship) + "\n"
-
+        out += "----sections----\n"
+        for section in self.sections:
+            out += str(section) + "\n"
         return out
 
 

@@ -14,8 +14,11 @@ import CourseList
 
 def generate_possibilities(course_list):
     #Brute force schedules, return some data structure containing of them
+    schedule_list = []  # List containing all possible schedules
+
     pass
 
+'''
 benSc = CourseList.CourseList()
 hershSc = CourseList.CourseList()
 
@@ -30,3 +33,8 @@ print(benSc)
 
 print("Hershal:")
 print(hershSc)
+'''
+
+testSc = CourseList.CourseList()
+testSc.add_course('MATH406')
+print(testSc)
