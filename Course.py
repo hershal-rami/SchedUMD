@@ -19,6 +19,7 @@ class Course:
 
         self.sections = []
         
+        # Concatenates all sections into one string to reduce number of API calls
         sectionStrings = r.get("sections")
         appStr = ""
         for section in sectionStrings:

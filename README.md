@@ -1,9 +1,4 @@
 # umd-schedule-builder
-To Do:
--Determine if inheritance can be used to make code simpler
--Clean up __str__ in Section.py
--Write brute force algorithm for creating schedules
---------------------------------------
 Set-Up:
 -Remove old versions of Python and install Python 3.8.3
 -Use pip to install requests
