@@ -10,6 +10,7 @@ Ben Davidson
 '''
 
 import requests
+import Course
 import CourseList
 
 def generate_possibilities(course_list):
@@ -35,6 +36,11 @@ print("Hershal:")
 print(hershSc)
 '''
 
+'''
 testSc = CourseList.CourseList()
-testSc.add_course('MATH406')
+testSc.add_course('ENEE200')
 print(testSc)
+'''
+
+course = Course.Course('ENEE200')
+print(course.get_section_data('0101'))

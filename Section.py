@@ -27,6 +27,12 @@ class Section:
                 # "start_time" -> string   (e.g.) 3:00pm, 12:00pm
                 # "end_time" -> string     (e.g.) 3:50pm, 12:50pm
 
+    # Returns start times of all meetings in an array
+    def get_start_times(self):
+        start_times = []
+        for meeting in self.meetings:
+            start_times.append(meeting.start_time)
+        return start_times
 
     def __str__(self):
         out = ""

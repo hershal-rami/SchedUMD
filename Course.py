@@ -6,11 +6,16 @@ i.e. Credits, semester, department, etc. for CMSC132
 
 import requests
 import Section
+from urllib3.exceptions import InsecureRequestWarning
 
 class Course:
 
     def __init__(self, course_id):
-            
+        
+        # Supress the certificate verification warning
+        requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+
+        # Gets API data without certificate verification
         r = requests.get('https://api.umd.io/v1/courses/' + course_id, verify=False).json()[0]
         
         #out += query_by_Id(course).json()[0].get("course_id"))
@@ -65,6 +70,11 @@ class Course:
             out += str(section) + "\n"
         return out
 
+    def get_section_data(self, section_number):
+        for section in self.sections:
+            if section.section_id == section_number or section.number == section_number:
+                return str(section)
+                break
 
-        
+        return 'Section not found.'
 #Should be enough for this file, don't need getters cause everything is public.
