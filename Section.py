@@ -34,6 +34,44 @@ class Section:
             start_times.append(meeting.start_time)
         return start_times
 
+    # Returns end times of all meetings in an array
+    def get_end_times(self):
+        end_times = []
+        for meeting in self.meetings:
+            end_times.append(meeting.end_time)
+        return end_times
+
+    # Converts 12 hour time to military
+    def get_military_time(self, time):
+        colon_idx = time.find(":")
+        hour = int(time[:colon_idx])
+        meridian = time[(colon_idx + 2):]   # am or pm
+
+        # Accounts for 12:00am -> 0000 case
+        if hour == 12:
+            hour = 0
+
+        # If past noon, add 12
+        if meridian.lower() == 'pm':
+            hour += 12
+
+        hour += int(time[colon_idx:(colon_idx + 2)])
+        return hour
+        
+    # Returns start time of all meetings in military time
+    def get_military_start_times(self):
+        military_times = []
+        for meeting in self.meetings:
+            military_times.append(get_military_time(meeting.start_time))
+        return military_times
+
+    # Returns end time of all meetings in military time
+    def get_military_end_times(self):
+        military_times = []
+        for meeting in self.meetings:
+            military_times.append(get_military_time(meeting.end_time))
+        return military_times
+    
     def __str__(self):
         out = ""
 

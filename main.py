@@ -19,7 +19,6 @@ def generate_possibilities(course_list):
 
     pass
 
-'''
 benSc = CourseList.CourseList()
 hershSc = CourseList.CourseList()
 
@@ -34,13 +33,3 @@ print(benSc)
 
 print("Hershal:")
 print(hershSc)
-'''
-
-'''
-testSc = CourseList.CourseList()
-testSc.add_course('ENEE200')
-print(testSc)
-'''
-
-course = Course.Course('ENEE200')
-print(course.get_section_data('0101'))

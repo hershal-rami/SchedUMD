@@ -75,6 +75,6 @@ class Course:
             if section.section_id == section_number or section.number == section_number:
                 return str(section)
                 break
-
         return 'Section not found.'
+        
 #Should be enough for this file, don't need getters cause everything is public.
