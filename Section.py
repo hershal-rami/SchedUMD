@@ -4,7 +4,7 @@ Class to house all data for a section of a Course
 i.e. location, time, professor, etc. for CMSC132-0101
 '''
 
-import requests
+import requests, math
 
 class Section:
 
@@ -77,10 +77,50 @@ class Section:
 
         return military_times
     
+    def scale_military_time(self, time):
+        hour = str(time)[:2]
+        minute = math.ceil(int(str(time)[2:]) * 10/6)
+        if(minute < 10):
+            minute = "0" + str(minute)
+
+        return hour + str(minute)
+    
     # Returns 5x68 2d array of booleans. M-F, 6am-11pm, 15min increments
-#    def get_meetings_booleans(self):
- #       for meeting in self.meetings:
+    def get_meetings_booleans(self):
+        out = []
+        for i in range(5):
+            out.append([])
+            for j in range(68):
+                out[i].append(False)
+        
+        for meeting in self.meetings:
+
+            days = []
+            if "M" in meeting.get("days"):
+               days.append(0)
+            if "u" in meeting.get("days"):
+               days.append(1)
+            if "W" in meeting.get("days"):
+               days.append(2)
+            if "h" in meeting.get("days"):
+               days.append(3)
+            if "F" in meeting.get("days"):
+               days.append(4)
             
+            start = int(self.get_military_time(meeting.get("start_time")))
+            start = int(self.scale_military_time(start))
+            end = int(self.get_military_time(meeting.get("end_time")))
+            end = int(self.scale_military_time(end))
+            
+            start = math.ceil((start / 25) - 24)
+            end = math.ceil((end / 25) - 24)
+            diff = end-start
+
+            for day in days:
+                for i in range(diff):
+                    out[day][start+i] = True
+
+        return out
     
     def __str__(self):
         out = ""

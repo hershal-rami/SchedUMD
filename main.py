@@ -29,8 +29,9 @@ benSc.add_courses(benCourses)
 hershSc.add_courses(hershCourses)
 
 print("Ben:")
-print(benSc.get_courses()[1].sections[0].get_military_start_times())
-print(benSc.get_courses()[1].sections[0].get_military_end_times())
+#print(benSc.get_courses()[1].sections[0].get_military_start_times())
+#print(benSc.get_courses()[1].sections[0].get_military_end_times())
+print(benSc.get_courses()[1].sections[1].get_meetings_booleans())
 #print(benSc)
 
 print("Hershal:")
