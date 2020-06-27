@@ -23,8 +23,6 @@ class Schedule:
     # Compares the boolean array of the new section to the rest of schedule
     # Adds the section and returns true if legal, returns false otherwise
     def add_section(self, section):
-        #TODO section.boolean_array is a placeholder for the section data
-
         # Stores ordered tuples representing indices for active time slots
         active_slots = []
         boolean_heatmap = section.get_boolean_heatmap()
