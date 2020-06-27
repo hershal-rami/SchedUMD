@@ -77,6 +77,7 @@ class Section:
 
         return military_times
     
+    # Scales the minutes to be between 1-100, instead of 1-60
     def scale_military_time(self, time):
         hour = str(time)[:2]
         minute = math.ceil(int(str(time)[2:]) * 10/6)
@@ -88,6 +89,8 @@ class Section:
     # Returns 5x68 2d array of booleans. M-F, 6am-11pm, 15min increments
     def get_meetings_booleans(self):
         out = []
+        
+        # Initialize array to be all false
         for i in range(5):
             out.append([])
             for j in range(68):
@@ -95,6 +98,7 @@ class Section:
         
         for meeting in self.meetings:
 
+            # Array holding references to days that have class
             days = []
             if "M" in meeting.get("days"):
                days.append(0)
@@ -107,15 +111,18 @@ class Section:
             if "F" in meeting.get("days"):
                days.append(4)
             
+            # Get and convert start/end times
             start = int(self.get_military_time(meeting.get("start_time")))
             start = int(self.scale_military_time(start))
             end = int(self.get_military_time(meeting.get("end_time")))
             end = int(self.scale_military_time(end))
             
+            # Convert military times to corresponding indices in array
             start = math.ceil((start / 25) - 24)
             end = math.ceil((end / 25) - 24)
             diff = end-start
 
+            # Check all time slots in array that have class to true
             for day in days:
                 for i in range(diff):
                     out[day][start+i] = True
