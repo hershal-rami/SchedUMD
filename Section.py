@@ -55,7 +55,7 @@ class Section:
         if meridian.lower() == 'pm':
             hour += 12
         else:
-            if (hour < 10):
+            if hour < 10:
                 hour = str(0) + str(hour)
 
         hour = str(hour) + (time[(colon_idx + 1):(colon_idx + 3)])
