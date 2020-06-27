@@ -1,6 +1,6 @@
 '''
 Class to house all data for a section of a Course
-
+:
 i.e. location, time, professor, etc. for CMSC132-0101
 '''
 
@@ -45,7 +45,7 @@ class Section:
     def get_military_time(self, time):
         colon_idx = time.find(":")
         hour = int(time[:colon_idx])
-        meridian = time[(colon_idx + 2):]   # am or pm
+        meridian = time[(colon_idx + 3):]   # am or pm
 
         # Accounts for 12:00am -> 0000 case
         if hour == 12:
@@ -54,23 +54,33 @@ class Section:
         # If past noon, add 12
         if meridian.lower() == 'pm':
             hour += 12
+        else:
+            if (hour < 10):
+                hour = str(0) + str(hour)
 
-        hour += int(time[colon_idx:(colon_idx + 2)])
+        hour = str(hour) + (time[(colon_idx + 1):(colon_idx + 3)])
         return hour
         
     # Returns start time of all meetings in military time
     def get_military_start_times(self):
         military_times = []
         for meeting in self.meetings:
-            military_times.append(get_military_time(meeting.start_time))
+            military_times.append(self.get_military_time(meeting.get("start_time")))
+
         return military_times
 
     # Returns end time of all meetings in military time
     def get_military_end_times(self):
         military_times = []
         for meeting in self.meetings:
-            military_times.append(get_military_time(meeting.end_time))
+            military_times.append(self.get_military_time(meeting.get("end_time")))
+
         return military_times
+    
+    # Returns 5x68 2d array of booleans. M-F, 6am-11pm, 15min increments
+#    def get_meetings_booleans(self):
+ #       for meeting in self.meetings:
+            
     
     def __str__(self):
         out = ""
