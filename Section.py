@@ -86,7 +86,7 @@ class Section:
         return hour + str(minute)
     
     # Returns 5x68 2d array of booleans. M-F, 6am-11pm, 15min increments
-    def get_meetings_booleans(self):
+    def get_boolean_heatmap(self):
         out = []
         for i in range(5):
             out.append([])

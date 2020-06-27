@@ -27,11 +27,11 @@ class Schedule:
 
         # Stores ordered tuples representing indices for active time slots
         active_slots = []
-
+        boolean_heatmap = section.get_boolean_heatmap()
         # Finds all active slots in the section parameter and stores them in active_slots
         for x in range(5):
             # represents each day of the week M-F
-            day = section.boolean_array[x]
+            day = section.boolean_heatmap[x]
 
             # 6am-11pm = 17 hours = 68 time slots of 15 mins each
             for y in range(68):
