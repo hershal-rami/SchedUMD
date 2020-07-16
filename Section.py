@@ -97,7 +97,6 @@ class Section:
                 out[i].append(False)
         
         for meeting in self.meetings:
-
             # Array holding references to days that have class
             days = []
             if "M" in meeting.get("days"):
