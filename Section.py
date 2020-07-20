@@ -1,6 +1,5 @@
 '''
 Class to house all data for a section of a Course
-:
 i.e. location, time, professor, etc. for CMSC132-0101
 '''
 

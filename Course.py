@@ -20,8 +20,7 @@ class Course:
         
         #out += query_by_Id(course).json()[0].get("course_id"))
 
-        self.course_id = course_id              # The associated course id (ENGL101)
-
+        self.course_id = course_id    # The associated course id (ENGL101)
         self.sections = []
         
         # Concatenates all sections into one string to reduce number of API calls

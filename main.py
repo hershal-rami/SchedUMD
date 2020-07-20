@@ -1,6 +1,6 @@
 '''
-UMD Schedule Builder
-https://github.com/hershal-rami/umd-schedule-builder
+SchedUMD
+https://github.com/hershal-rami/SchedUMD
 
 Authors:
 Hershal Rami
@@ -17,7 +17,7 @@ import CourseList
 # Returns list containing all possible Schedule objects
 def generate_possibilities(course_list):
     courses = course_list.get_courses() # Array of Course objects
-    num_courses = courses.len() # Number of Courses being taken
+    num_courses = courses.len()
 
     all_sections = [] # 2D array holding list of all sections for each course
     schedule_list = [] # Array holding all possible Schedules
@@ -47,7 +47,7 @@ def generate_possibilities(course_list):
 
                     if result:
                         # Last combination possible failed, we're done making Schedules
-                        return
+                        return schedule_list
                 else:
                     # Only loop if there was a conflict
                     break
@@ -58,11 +58,13 @@ def generate_possibilities(course_list):
         # Recursive function to increment counter_array
         result = increment_counter[counter_array, courses, num_courses - 1]
 
+        # No more schedules to make, so return master list
         if result:
-            return
+            return schedule_list
 
-# Increases last counter by 1, if it reaches the last section for that counter then increments the previous one recursively
-# Returns True when there are no more course combinations to check, False otherwise
+# By default increases last counter by 1. If there are no more sections for a counter, then increments the previous one
+# recursively. Returns True when there are no more course combinations possible (i.e. first course runs out of sections)
+# Returns False otherwise
 def increment_counter(counter_array, courses, current_index):
     counter = counter_array[current_index]
     num_sections = courses[current_index].sections.len()

@@ -35,7 +35,7 @@ class Schedule:
         
         # Finds all active slots in the section parameter and stores them in active_slots
         for x in range(5):
-            # represents each day of the week M-F
+            # Represents each day of the week M-F
             day = boolean_heatmap[x]
 
             # 6am-11pm = 17 hours = 68 time slots of 15 mins each
@@ -53,7 +53,7 @@ class Schedule:
                 # The new section overlaps with an existing section
                 return False
         
-        # New section does not overlap, add it to the schedule and return true
+        # New section does not overlap, add it to the schedule and return
         self.sections.append(Section.Section(section))
         for indices in active_slots:
             day = indices[0][0]
