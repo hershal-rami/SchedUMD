@@ -61,8 +61,7 @@ def generate_possibilities(course_list):
 # Increases last counter by 1, if it reaches the last section for that counter then increments the previous one recursively
 def increment_counter(counter_array, courses, current_index):
     counter = counter_array[current_index]
-    num_sections = 3
-    #num_sections = courses[current_index].sections.len()
+    num_sections = courses[current_index].sections.len()
 
     # Reached last section for this course
     if (counter + 1) == num_sections:
@@ -95,17 +94,3 @@ print(benSc.get_courses()[1].sections[1].get_meetings_booleans())
 
 print("Hershal:")
 #print(hershSc)
-
-'''
-# Counter array test code
-counter_array = [0,0,0]
-courses = [[0 for x in range(3)] for y in range (3)]
-
-for x in range(3):
-    for y in range(3):
-        courses[x][y] = y
-
-for x in range(27):
-    print(counter_array)
-    result = increment_counter(counter_array, courses, 2)
-'''
