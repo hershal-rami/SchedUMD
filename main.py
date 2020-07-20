@@ -22,11 +22,11 @@ def generate_possibilities(course_list):
     all_sections = [] # 2D array holding list of all sections for each course
     schedule_list = [] # Array holding all possible Schedules
 
-    # populate the array with section data from provided CourseList
+    # Populate the array with section data from provided CourseList
     for course in courses:
         all_sections.append(course.sections)
 
-    # holds counters for each course's array, initialize all to 0
+    # Holds counters for each course's array, initialize all to 0
     counter_array = [0] * num_courses
 
     while True:
@@ -35,18 +35,21 @@ def generate_possibilities(course_list):
         
         # Traverses all_sections to make a Schedule
         for x in range(num_courses):
-            # TODO this breaks if the last section of a course has a conflict
             # Loop to ensure that a section is added from this course
             while True:
                 # Pulls the next section for the course and attempts to add it
                 section = all_sections[x][counter_array[x]]
-                result = schedule.add_section(section)
+                success = schedule.add_section(section)
 
-                # Only loop if there was a conflict
-                if not result:
+                if not success:
                     # Increment counter for this Course to avoid future conflicts
-                    counter_array[x] += 1
+                    result = increment_counter[counter_array, courses, x]
+
+                    if result:
+                        # Last combination possible failed, we're done making Schedules
+                        return
                 else:
+                    # Only loop if there was a conflict
                     break
 
         # Add the new Schedule to the master list
@@ -56,9 +59,10 @@ def generate_possibilities(course_list):
         result = increment_counter[counter_array, courses, num_courses - 1]
 
         if result:
-            break
+            return
 
 # Increases last counter by 1, if it reaches the last section for that counter then increments the previous one recursively
+# Returns True when there are no more course combinations to check, False otherwise
 def increment_counter(counter_array, courses, current_index):
     counter = counter_array[current_index]
     num_sections = courses[current_index].sections.len()
