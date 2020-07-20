@@ -1,4 +1,4 @@
-# umd-schedule-builder
+# SchedUMD
 Set-Up:
 -Remove old versions of Python and install Python 3.8.3
 -Use pip to install requests
