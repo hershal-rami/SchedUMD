@@ -52,28 +52,30 @@ def generate_possibilities(course_list):
         # Add the new Schedule to the master list
         schedule_list.append(schedule)
 
-        # TODO ok ive realized like, all of this increment shit fails several edge cases and my attempts to
-        # rework it are not really panning out rn, ill fix it later lol
-        # Increment counter_array as needed
-        reset = False
-        for x in reversed(range(num_courses)):
-            counter = counter_array[x]
-            num_sections = courses[x].sections.len()
+        # Recursive function to increment counter_array
+        result = increment_counter[counter_array, courses, num_courses - 1]
 
-            # No more sections for this course
-            if (counter + 1) == num_sections:
-                if not reset:
-                    # Only ever want to increment 1 counter, even though sometimes you may need to reset more than 1
-                    # Reset counter and increment previous counter to move to a different branch
-                    counter_array[x] = 0
-                    counter_array[x - 1] += 1
-                    reset = True
-            else:
-                if not reset:
-                    counter_array[x] += 1
-                    reset = True
-                break
+        if result:
+            break
 
+# Increases last counter by 1, if it reaches the last section for that counter then increments the previous one recursively
+def increment_counter(counter_array, courses, current_index):
+    counter = counter_array[current_index]
+    num_sections = courses[current_index].sections.len()
+
+    # Reached last section for this course
+    if (counter + 1) == num_sections:
+        if current_index == 0:
+            # This is the first course, so we're done making Schedules
+            return True
+        
+        # Reset current counter and increment previous one
+        counter_array[current_index] = 0
+        increment_counter(counter_array, courses, current_index - 1)
+    else:
+        # Increment current counter and return to main loop
+        counter_array[current_index] += 1
+        return False
 
 benSc = CourseList.CourseList()
 hershSc = CourseList.CourseList()
