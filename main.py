@@ -10,6 +10,8 @@ Ben Davidson
 '''
 
 import requests
+import time
+import Schedule
 import Course
 import CourseList
 
@@ -17,7 +19,7 @@ import CourseList
 # Returns list containing all possible Schedule objects
 def generate_possibilities(course_list):
     courses = course_list.get_courses() # Array of Course objects
-    num_courses = courses.len()
+    num_courses = len(courses)
 
     all_sections = [] # 2D array holding list of all sections for each course
     schedule_list = [] # Array holding all possible Schedules
@@ -67,7 +69,7 @@ def generate_possibilities(course_list):
 # Returns False otherwise
 def increment_counter(counter_array, courses, current_index):
     counter = counter_array[current_index]
-    num_sections = courses[current_index].sections.len()
+    num_sections = len(courses[current_index].sections)
 
     # Reached last section for this course
     if (counter + 1) == num_sections:
@@ -83,7 +85,7 @@ def increment_counter(counter_array, courses, current_index):
         counter_array[current_index] += 1
         return False
 
-
+'''
 benSc = CourseList.CourseList()
 hershSc = CourseList.CourseList()
 
@@ -94,10 +96,20 @@ benSc.add_courses(benCourses)
 hershSc.add_courses(hershCourses)
 
 print("Ben:")
-#print(benSc.get_courses()[1].sections[0].get_military_start_times())
-#print(benSc.get_courses()[1].sections[0].get_military_end_times())
-print(benSc.get_courses()[1].sections[1].get_meetings_booleans())
-#print(benSc)
+#print(benSc.get_courses()[1].sections[1].get_boolean_heatmap())
+print(benSc)
 
 print("Hershal:")
-#print(hershSc)
+print(hershSc)
+'''
+
+testSc = CourseList.CourseList()
+testCourses = ['MATH406', 'HACS100', 'CMSC420']
+
+testSc.add_courses(testCourses)
+
+t0 = time.time
+all_schedules = generate_possibilities(testSc)
+t1 = time.time
+
+print(t1 - t0)

@@ -13,9 +13,9 @@ class Schedule:
 
         # Initialize array to be all false
         for i in range(5):
-            compiled_sections.append([])
+            self.compiled_sections.append([])
             for j in range(68):
-                compiled_sections[i].append(False)
+                self.compiled_sections[i].append(False)
 
     def __str__(self):
         out = "{"
@@ -43,21 +43,21 @@ class Schedule:
                 # Represents a single 15 min slot
                 if day[y] == True:
                     active_slots.append([x,y])
-        
+
         # Compare active_slots to compiled master list
         for indices in active_slots:
-            day = indices[0][0]
-            slot = indices[0][1]
+            day = indices[0]
+            slot = indices[1]
 
             if self.compiled_sections[day][slot] == True:
                 # The new section overlaps with an existing section
                 return False
         
         # New section does not overlap, add it to the schedule and return
-        self.sections.append(Section.Section(section))
+        self.sections.append(section)
         for indices in active_slots:
-            day = indices[0][0]
-            slot = indices[0][1]
+            day = indices[0]
+            slot = indices[1]
             self.compiled_sections[day][slot] = True
         return True
     
