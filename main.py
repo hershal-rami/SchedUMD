@@ -83,6 +83,7 @@ def increment_counter(counter_array, courses, current_index):
         counter_array[current_index] += 1
         return False
 
+
 benSc = CourseList.CourseList()
 hershSc = CourseList.CourseList()
 
