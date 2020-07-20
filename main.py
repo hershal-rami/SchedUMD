@@ -79,14 +79,13 @@ def increment_counter(counter_array, courses, current_index):
         
         # Reset current counter and increment previous one
         counter_array[current_index] = 0
-        increment_counter(counter_array, courses, current_index - 1)
+        return increment_counter(counter_array, courses, current_index - 1)
     else:
         # Increment current counter and return to main loop
         counter_array[current_index] += 1
         return False
 
 
-'''
 benSc = CourseList.CourseList()
 hershSc = CourseList.CourseList()
 
@@ -96,23 +95,14 @@ hershCourses = ['CMSC351', 'CMSC330', 'STAT400', 'HACS200', 'HACS208N', 'CMSC389
 benSc.add_courses(benCourses)
 hershSc.add_courses(hershCourses)
 
-print("Ben:")
-#print(benSc.get_courses()[1].sections[1].get_boolean_heatmap())
-print(benSc)
-
-print("Hershal:")
-print(hershSc)
-'''
-
-testSc = CourseList.CourseList()
-#testCourses = ['MATH406', 'HACS100', 'CMSC420']
-testCourses = ['MATH406', 'HACS100']
-
-testSc.add_courses(testCourses)
+t0 = time.time()
+all_schedules = generate_possibilities(benSc)
+t1 = time.time()
+total = t1 - t0
+print(total)
 
 t0 = time.time()
-all_schedules = generate_possibilities(testSc)
+all_schedules = generate_possibilities(hershSc)
 t1 = time.time()
-print(all_schedules)
 total = t1 - t0
 print(total)
