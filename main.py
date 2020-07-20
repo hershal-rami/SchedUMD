@@ -45,7 +45,7 @@ def generate_possibilities(course_list):
 
                 if not success:
                     # Increment counter for this Course to avoid future conflicts
-                    result = increment_counter[counter_array, courses, x]
+                    result = increment_counter(counter_array, courses, x)
 
                     if result:
                         # Last combination possible failed, we're done making Schedules
@@ -58,7 +58,7 @@ def generate_possibilities(course_list):
         schedule_list.append(schedule)
 
         # Recursive function to increment counter_array
-        result = increment_counter[counter_array, courses, num_courses - 1]
+        result = increment_counter(counter_array, courses, num_courses - 1)
 
         # No more schedules to make, so return master list
         if result:
@@ -85,6 +85,7 @@ def increment_counter(counter_array, courses, current_index):
         counter_array[current_index] += 1
         return False
 
+
 '''
 benSc = CourseList.CourseList()
 hershSc = CourseList.CourseList()
@@ -104,12 +105,14 @@ print(hershSc)
 '''
 
 testSc = CourseList.CourseList()
-testCourses = ['MATH406', 'HACS100', 'CMSC420']
+#testCourses = ['MATH406', 'HACS100', 'CMSC420']
+testCourses = ['MATH406', 'HACS100']
 
 testSc.add_courses(testCourses)
 
-t0 = time.time
+t0 = time.time()
 all_schedules = generate_possibilities(testSc)
-t1 = time.time
-
-print(t1 - t0)
+t1 = time.time()
+print(all_schedules)
+total = t1 - t0
+print(total)

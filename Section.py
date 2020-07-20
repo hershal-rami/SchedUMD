@@ -110,9 +110,9 @@ class Section:
                days.append(4)
             
             # Get and convert start/end times
-            start = int(self.get_military_time(meeting.get("start_time")))
+            start = self.get_military_time(meeting.get("start_time"))
             start = int(self.scale_military_time(start))
-            end = int(self.get_military_time(meeting.get("end_time")))
+            end = self.get_military_time(meeting.get("end_time"))
             end = int(self.scale_military_time(end))
             
             # Convert military times to corresponding indices in array
