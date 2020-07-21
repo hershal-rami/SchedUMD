@@ -21,7 +21,6 @@ inc = 0
 def generate_possibilities(course_list):
     global inc
     inc = 0
-    t0 = time.time()
     courses = course_list.get_courses() # Array of Course objects
     num_courses = len(courses)
 
@@ -37,14 +36,12 @@ def generate_possibilities(course_list):
 
     arrayStr = "["
     for i in range(num_courses):
-        arrayStr += str(len(courses[i].sections))
+        arrayStr += str(len(courses[i].sections)) + "  (" + courses[i].course_id + ")"
         if (i != num_courses-1):
-            arrayStr += ","
+            arrayStr += ",\n"
 
     arrayStr += "]"
-    print("Counter array max values: " + arrayStr)
-    t1 = time.time()
-    print("Setup for Generate took: " + str(t1-t0))
+    print("Counter array max values: \n" + arrayStr)
 
     while True:
         # Create a new Schedule
@@ -118,7 +115,7 @@ t0 = time.time()
 all_schedules = generate_possibilities(benSc)
 t1 = time.time()
 total = t1 - t0
-print(str(total) + " seconds to run")
+print(str(total)[:5] + " seconds to run")
 print(str(inc) + " increment calls")
 print(str(len(all_schedules)) + " schedules made!\n")
 
@@ -127,6 +124,6 @@ t0 = time.time()
 all_schedules = generate_possibilities(hershSc)
 t1 = time.time()
 total = t1 - t0
-print(str(total) + " seconds to run")
+print(str(total)[:5] + " seconds to run")
 print(str(inc) + " increment calls")
 print(str(len(all_schedules)) + " schedules made!")

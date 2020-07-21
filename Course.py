@@ -35,7 +35,7 @@ class Course:
         secr = requests.get('https://api.umd.io/v1/courses/sections/' + appStr, verify=False).json()
 
         t1 = time.time()
-        print("Request for " + course_id + " took: " + str(t1-t0))
+        print("Request for " + course_id + " took: " + str(t1-t0)[:5])
         for section in secr:
             self.sections.append(Section.Section(section))
         
