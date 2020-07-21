@@ -15,9 +15,13 @@ import Schedule
 import Course
 import CourseList
 
+inc = 0
 # Traverses the given CourseList with a modified brute force algorithm
 # Returns list containing all possible Schedule objects
 def generate_possibilities(course_list):
+    global inc
+    inc = 0
+    t0 = time.time()
     courses = course_list.get_courses() # Array of Course objects
     num_courses = len(courses)
 
@@ -30,6 +34,17 @@ def generate_possibilities(course_list):
 
     # Holds counters for each course's array, initialize all to 0
     counter_array = [0] * num_courses
+
+    arrayStr = "["
+    for i in range(num_courses):
+        arrayStr += str(len(courses[i].sections))
+        if (i != num_courses-1):
+            arrayStr += ","
+
+    arrayStr += "]"
+    print("Counter array max values: " + arrayStr)
+    t1 = time.time()
+    print("Setup for Generate took: " + str(t1-t0))
 
     while True:
         # Create a new Schedule
@@ -68,6 +83,9 @@ def generate_possibilities(course_list):
 # recursively. Returns True when there are no more course combinations possible (i.e. first course runs out of sections)
 # Returns False otherwise
 def increment_counter(counter_array, courses, current_index):
+    global inc
+    inc += 1
+
     counter = counter_array[current_index]
     num_sections = len(courses[current_index].sections)
 
@@ -95,14 +113,20 @@ hershCourses = ['CMSC351', 'CMSC330', 'STAT400', 'HACS200', 'HACS208N', 'CMSC389
 benSc.add_courses(benCourses)
 hershSc.add_courses(hershCourses)
 
+print("Running generate on benSc...")
 t0 = time.time()
 all_schedules = generate_possibilities(benSc)
 t1 = time.time()
 total = t1 - t0
-print(total)
+print(str(total) + " seconds to run")
+print(str(inc) + " increment calls")
+print(str(len(all_schedules)) + " schedules made!\n")
 
+print("Running generate on hershSc...")
 t0 = time.time()
 all_schedules = generate_possibilities(hershSc)
 t1 = time.time()
 total = t1 - t0
-print(total)
+print(str(total) + " seconds to run")
+print(str(inc) + " increment calls")
+print(str(len(all_schedules)) + " schedules made!")

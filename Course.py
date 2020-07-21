@@ -4,6 +4,7 @@ Class to house all data on a course
 i.e. Credits, semester, department, etc. for CMSC132
 '''
 
+import time
 import requests
 import Section
 from urllib3.exceptions import InsecureRequestWarning
@@ -15,6 +16,7 @@ class Course:
         # Supress the certificate verification warning
         requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
+        t0 = time.time()
         # Gets API data without certificate verification
         r = requests.get('https://api.umd.io/v1/courses/' + course_id, verify=False).json()[0]
         
@@ -32,6 +34,8 @@ class Course:
         appStr = appStr[:-1]
         secr = requests.get('https://api.umd.io/v1/courses/sections/' + appStr, verify=False).json()
 
+        t1 = time.time()
+        print("Request for " + course_id + " took: " + str(t1-t0))
         for section in secr:
             self.sections.append(Section.Section(section))
         
