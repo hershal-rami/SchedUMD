@@ -65,7 +65,15 @@ class Schedule:
         for section in sections:
             self.add_section(section)
     
+    # Removes the section from the Schedule and the boolean heatmap
     def remove_section(self, section):
+        boolean_heatmap = section.get_boolean_heatmap()
+
+        for x in range(5):
+            for y in range(68):
+                if boolean_heatmap[x][y] == True:
+                    self.compiled_sections[x][y] = False
+                    
         self.sections.remove(section)
     
     def remove_sections(self, sections):

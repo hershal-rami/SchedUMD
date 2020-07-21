@@ -44,7 +44,6 @@ def generate_possibilities(course_list):
     print("Counter array max values: \n" + arrayStr)
 
     while True:
-        conflict = False
         # Create a new Schedule
         schedule = Schedule.Schedule()
         
