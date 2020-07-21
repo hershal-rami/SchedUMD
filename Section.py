@@ -86,7 +86,7 @@ class Section:
         return hour + str(minute)
     
     # Returns 5x68 2d array of booleans. M-F, 6am-11pm, 15min increments
-    def get_boolean_heatmap(self):
+    def get_boolean_heatmap(self):        
         out = []
         
         # Initialize array to be all false
@@ -98,15 +98,21 @@ class Section:
         for meeting in self.meetings:
             # Array holding references to days that have class
             days = []
-            if "M" in meeting.get("days"):
+            class_days = meeting.get("days")
+            
+            # Section is online and unscheduled, meetings don't matter
+            if not class_days:
+                continue
+            
+            if "M" in class_days:
                days.append(0)
-            if "u" in meeting.get("days"):
+            if "u" in class_days:
                days.append(1)
-            if "W" in meeting.get("days"):
+            if "W" in class_days:
                days.append(2)
-            if "h" in meeting.get("days"):
+            if "h" in class_days:
                days.append(3)
-            if "F" in meeting.get("days"):
+            if "F" in class_days:
                days.append(4)
             
             # Get and convert start/end times
