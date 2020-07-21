@@ -20,7 +20,7 @@ class Schedule:
     def __str__(self):
         out = "{"
         for section in self.sections:
-            out += section.course_id + ", "
+            out += section.section_id + ", "
         out = out[:-2]
         out += "}"
 

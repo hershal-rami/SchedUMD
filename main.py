@@ -44,6 +44,7 @@ def generate_possibilities(course_list):
     print("Counter array max values: \n" + arrayStr)
 
     while True:
+        conflict = False
         # Create a new Schedule
         schedule = Schedule.Schedule()
         
@@ -100,7 +101,7 @@ def increment_counter(counter_array, courses, current_index):
         counter_array[current_index] += 1
         return False
 
-
+'''
 benSc = CourseList.CourseList()
 hershSc = CourseList.CourseList()
 
@@ -127,3 +128,18 @@ total = t1 - t0
 print(str(total)[:5] + " seconds to run")
 print(str(inc) + " increment calls")
 print(str(len(all_schedules)) + " schedules made!")
+'''
+testSc = CourseList.CourseList()
+testCourses = ['MATH406', 'HACS100']
+testSc.add_courses(testCourses)
+print("Running generate on testSc...")
+t0 = time.time()
+all_schedules = generate_possibilities(testSc)
+t1 = time.time()
+total = t1 - t0
+print(str(total)[:5] + " seconds to run")
+print(str(inc) + " increment calls")
+print(str(len(all_schedules)) + " schedules made!")
+
+for schedule in all_schedules:
+    print(schedule)
