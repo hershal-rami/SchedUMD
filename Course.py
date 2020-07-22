@@ -4,15 +4,13 @@ Class to house all data on a course
 i.e. Credits, semester, department, etc. for CMSC132
 '''
 
-import time
-import requests
+import time, requests
 import Section
 from urllib3.exceptions import InsecureRequestWarning
 
 class Course:
 
-    def __init__(self, course_id):
-        
+    def __init__(self, course_id):        
         # Supress the certificate verification warning
         requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
@@ -48,6 +46,20 @@ class Course:
         self.gen_ed = r.get("gen_ed")                    # Gen ed requirements that this course fulfills
         self.relationships = r.get("relationships")      # Dictionary that holds information on coreqs, prereqs, cross-listings, etc.
 
+    def get_section_data(self, section_number):
+        for section in self.sections:
+            if section.section_id == section_number or section.number == section_number:
+                return str(section)
+                
+        return 'Section not found.'
+
+    def get_section(self, section_number):
+        for section in self.sections:
+            if section.section_id == section_number or section.number == section_number:
+                return section    
+
+        return 'Section not found'
+
     def __str__(self):
         out = "" 
 
@@ -72,12 +84,3 @@ class Course:
         for section in self.sections:
             out += str(section) + "\n"
         return out
-
-    def get_section_data(self, section_number):
-        for section in self.sections:
-            if section.section_id == section_number or section.number == section_number:
-                return str(section)
-                break
-        return 'Section not found.'
-        
-#Should be enough for this file, don't need getters cause everything is public.

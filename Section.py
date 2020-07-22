@@ -8,7 +8,6 @@ import requests, math
 class Section:
 
     def __init__(self, section_data):
-    
         self.section_id = section_data.get("section_id");     # Course code plus sectionID ("CMSC250-0101")
         self.number = section_data.get("number")              # Second half of sectionID (0101)
         self.instructors = section_data.get("instructors")    # Array of professor names for section (e.g. {"Yoon", "Shankar"})
@@ -25,6 +24,50 @@ class Section:
                 # "classtype" -> string    (e.g.) Lecture, Discussion
                 # "start_time" -> string   (e.g.) 3:00pm, 12:00pm
                 # "end_time" -> string     (e.g.) 3:50pm, 12:50pm
+    
+    # Set of 2-element lists. list[0] representing days (M-F),
+    # list[1] representing time slots (6am-11pm, 15min increments)
+    def get_tuple_set(self):        
+        out = set()
+                
+        for meeting in self.meetings:
+            # Array holding references to days that have class
+            days = []
+            class_days = meeting.get("days")
+            
+            # Section is online and unscheduled, meetings don't matter
+            if not class_days:
+                continue
+            
+            # Append indices for corresponding days
+            if "M" in class_days:
+               days.append(0)
+            if "u" in class_days:
+               days.append(1)
+            if "W" in class_days:
+               days.append(2)
+            if "h" in class_days:
+               days.append(3)
+            if "F" in class_days:
+               days.append(4)
+            
+            # Get and convert start/end times
+            start = self.get_military_time(meeting.get("start_time"))
+            start = int(self.scale_military_time(start))
+            end = self.get_military_time(meeting.get("end_time"))
+            end = int(self.scale_military_time(end))
+            
+            # Convert military times to corresponding indices in array
+            start = math.ceil((start / 25) - 24)
+            end = math.ceil((end / 25) - 24)
+            diff = end - start
+
+            # Check all time slots in array that have class to true
+            for day in days:
+                for i in range(diff):
+                    pair = (day, start + i)
+                    out.add(pair)
+        return out
 
     # Returns start times of all meetings in an array
     def get_start_times(self):
@@ -85,54 +128,6 @@ class Section:
 
         return hour + str(minute)
     
-    # Returns 5x68 2d array of booleans. M-F, 6am-11pm, 15min increments
-    def get_boolean_heatmap(self):        
-        out = []
-        
-        # Initialize array to be all false
-        for i in range(5):
-            out.append([])
-            for j in range(68):
-                out[i].append(False)
-        
-        for meeting in self.meetings:
-            # Array holding references to days that have class
-            days = []
-            class_days = meeting.get("days")
-            
-            # Section is online and unscheduled, meetings don't matter
-            if not class_days:
-                continue
-            
-            if "M" in class_days:
-               days.append(0)
-            if "u" in class_days:
-               days.append(1)
-            if "W" in class_days:
-               days.append(2)
-            if "h" in class_days:
-               days.append(3)
-            if "F" in class_days:
-               days.append(4)
-            
-            # Get and convert start/end times
-            start = self.get_military_time(meeting.get("start_time"))
-            start = int(self.scale_military_time(start))
-            end = self.get_military_time(meeting.get("end_time"))
-            end = int(self.scale_military_time(end))
-            
-            # Convert military times to corresponding indices in array
-            start = math.ceil((start / 25) - 24)
-            end = math.ceil((end / 25) - 24)
-            diff = end-start
-
-            # Check all time slots in array that have class to true
-            for day in days:
-                for i in range(diff):
-                    out[day][start+i] = True
-
-        return out
-    
     def __str__(self):
         out = ""
 
@@ -163,7 +158,3 @@ class Section:
             out += meeting.get("end_time")
         out += "\n@@@END SECTION@@\n"
         return out
-
-
-            
-

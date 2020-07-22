@@ -9,13 +9,11 @@ Ben Davidson
 6/20/2020
 '''
 
-import requests
-import time
-import Schedule
-import Course
-import CourseList
+import requests, time
+import Schedule, Course, CourseList
 
 inc = 0
+
 # Traverses the given CourseList with a modified brute force algorithm
 # Returns list containing all possible Schedule objects
 def generate_possibilities(course_list):
@@ -27,7 +25,7 @@ def generate_possibilities(course_list):
 
     schedule_list = [] # Array holding all possible Schedules
 
-    # Holds counters for each course's array, initialize all to 0
+    # Holds section counters for each course, all initialized to zero
     counter_array = [0] * num_courses
 
     arrayStr = "["
@@ -53,7 +51,7 @@ def generate_possibilities(course_list):
         # Add new schedule to master list
         schedule_list.append(schedule)
 
-        # Returns True if done making Courses, otherwise increments counter_array
+        # Returns True if done making Schedules, otherwise increments counter_array
         finished = increment_counter(counter_array, courses, num_courses - 1)
 
         # No more schedules to make, so return master list
@@ -70,7 +68,7 @@ def make_schedule(counter_array, courses, num_courses):
 
     # Traverses all courses to make a Schedule
     for course_idx in range(num_courses):
-        # Continues looping until a section works
+        # Continues looping until a section doesn't conflict
         while True:
             # Pulls the next section for the course and attempts to add it
             counter = counter_array[course_idx]
@@ -95,7 +93,7 @@ def make_schedule(counter_array, courses, num_courses):
             else:
                 break
     
-    # Successfully made a schedule
+    # Successfully made the schedule
     return schedule
 
 # By default increases last counter by 1. If there are no more sections for a counter, then increments the previous one
@@ -122,45 +120,49 @@ def increment_counter(counter_array, courses, course_idx):
         counter_array[course_idx] += 1
         return False
 
-'''
-benSc = CourseList.CourseList()
-hershSc = CourseList.CourseList()
+def large_test_case():
+    benSc = CourseList.CourseList()
+    hershSc = CourseList.CourseList()
 
-benCourses = ['CMSC351', 'CMSC216', 'HACS200', 'MATH241', 'CMSC389O', 'GEOG170']
-hershCourses = ['CMSC351', 'CMSC330', 'STAT400', 'HACS200', 'HACS208N', 'CMSC389O']
+    benCourses = ['CMSC351', 'CMSC216', 'HACS200', 'MATH241', 'CMSC389O', 'GEOG170']
+    hershCourses = ['CMSC351', 'CMSC330', 'STAT400', 'HACS200', 'HACS208N', 'CMSC389O']
 
-benSc.add_courses(benCourses)
-hershSc.add_courses(hershCourses)
+    benSc.add_courses(benCourses)
+    hershSc.add_courses(hershCourses)
 
-print("Running generate on benSc...")
-t0 = time.time()
-all_schedules = generate_possibilities(benSc)
-t1 = time.time()
-total = t1 - t0
-print(str(total)[:5] + " seconds to run")
-print(str(inc) + " increment calls")
-print(str(len(all_schedules)) + " schedules made!\n")
+    print("Running generate on benSc...")
+    t0 = time.time()
+    all_schedules = generate_possibilities(benSc)
+    t1 = time.time()
+    total = t1 - t0
+    print(str(total)[:5] + " seconds to run")
+    print(str(inc) + " increment calls")
+    print(str(len(all_schedules)) + " schedules made!\n")
 
-print("Running generate on hershSc...")
-t0 = time.time()
-all_schedules = generate_possibilities(hershSc)
-t1 = time.time()
-total = t1 - t0
-print(str(total)[:5] + " seconds to run")
-print(str(inc) + " increment calls")
-print(str(len(all_schedules)) + " schedules made!")
-'''
-testSc = CourseList.CourseList()
-testCourses = ['MATH406', 'HACS100']
-testSc.add_courses(testCourses)
-print("Running generate on testSc...")
-t0 = time.time()
-all_schedules = generate_possibilities(testSc)
-t1 = time.time()
-total = t1 - t0
-print(str(total)[:5] + " seconds to run")
-print(str(inc) + " increment calls")
-print(str(len(all_schedules)) + " schedules made!")
+    print("Running generate on hershSc...")
+    t0 = time.time()
+    all_schedules = generate_possibilities(hershSc)
+    t1 = time.time()
+    total = t1 - t0
+    print(str(total)[:5] + " seconds to run")
+    print(str(inc) + " increment calls")
+    print(str(len(all_schedules)) + " schedules made!")
+    return all_schedules
 
-for schedule in all_schedules:
-    print(schedule)
+def small_test_case():
+    testSc = CourseList.CourseList()
+    testCourses = ['MATH406', 'HACS100']
+    testSc.add_courses(testCourses)
+    print("Running generate on testSc...")
+    t0 = time.time()
+    all_schedules = generate_possibilities(testSc)
+    t1 = time.time()
+    total = t1 - t0
+    print(str(total)[:5] + " seconds to run")
+    print(str(inc) + " increment calls")
+    print(str(len(all_schedules)) + " schedules made!")
+    return all_schedules
+
+all_schedule = large_test_case()
+#for schedule in all_schedule:
+#   print(schedule)

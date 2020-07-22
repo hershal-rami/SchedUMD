@@ -34,5 +34,3 @@ class CourseList:
             out += str(course) + "\n"
 
         return out
-
-    # Can add other functions to manipulate array later
