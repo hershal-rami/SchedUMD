@@ -11,9 +11,9 @@ https://jasonpark.me/gt-scheduler/
 https://api.umd.io/v1/courses
 
 To Do:
--Replace heat map conflict checking with hashsets or some other method
 -Create front-end to manipulate the class data
 -Cut down number of redudanct sections (i.e. same times but different discussions/rooms)
+-Remove sections that are already full
 -Add ability to filter out undesired schedules based on time, location, professor, etc.
 -Use Threading to make API calls as the user selects a course in the dropdown
 -Add additional options to filter out undesired schedules
