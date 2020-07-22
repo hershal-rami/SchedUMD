@@ -11,7 +11,6 @@ https://jasonpark.me/gt-scheduler/
 https://api.umd.io/v1/courses
 
 To Do:
--Test Schedule creation for accuracy/completeness
 -If the algorithm is too slow, replace heat map conflict checking with hashsets or some other method. Can rewrite in a different language if its still too slow
 -Create front-end to manipulate the class data
 -Use Threading to make API calls as the user selects a course in the dropdown

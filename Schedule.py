@@ -73,11 +73,15 @@ class Schedule:
             for y in range(68):
                 if boolean_heatmap[x][y] == True:
                     self.compiled_sections[x][y] = False
-                    
+
         self.sections.remove(section)
     
     def remove_sections(self, sections):
         for section in sections:
             self.remove_section(section)
+
+    def clear(self):
+        self.sections.clear()
+        self.compiled_sections.clear()
 
     # Can add other functions to manipulate array later
