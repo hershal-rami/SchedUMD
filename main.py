@@ -15,96 +15,6 @@ import Schedule
 import Course
 import CourseList
 
-'''
-# Traverses the given CourseList with a modified brute force algorithm
-# Returns list containing all possible Schedule objects
-def generate_possibilities(course_list):
-    global inc
-    inc = 0
-    courses = course_list.get_courses() # Array of Course objects
-    num_courses = len(courses)
-
-    schedule_list = [] # Array holding all possible Schedules
-
-    # Holds counters for each course's array, initialize all to 0
-    counter_array = [0] * num_courses
-
-    arrayStr = "["
-    for i in range(num_courses):
-        arrayStr += str(len(courses[i].sections)) + "  (" + courses[i].course_id + ")"
-        if (i != num_courses-1):
-            arrayStr += ",\n"
-
-    arrayStr += "]"
-    print("Counter array max values: \n" + arrayStr)
-
-    while True:
-        # Create a new Schedule
-        schedule = Schedule.Schedule()
-        
-        # Traverses all courses to make a Schedule
-        for course_idx in range(num_courses):
-            # Continues adding sections until one works
-            while True:
-                # Pulls the next section for the course and attempts to add it
-                counter = counter_array[course_idx]
-                section = courses[course_idx].sections[counter]
-                success = schedule.add_section(section)
-
-                if not success:
-                    # Reached last section for this course
-                    if (counter + 1) == len(courses[course_idx].sections):
-                        # Updates entire schedule to move to a different branch of sections
-                        finished = update_schedule()
-                        break
-                    else:
-                        # Increment counter for this Course to avoid future conflicts
-                        finished = increment_counter(counter_array, courses, course_idx)
-
-                    if finished:
-                        # Last combination possible failed, we're done making Schedules
-                        return schedule_list
-                else:
-                    break
-        
-        # Add the new Schedule to the master list
-        schedule_list.append(schedule)
-
-        # Recursive function to increment counter_array
-        finished = increment_counter(counter_array, courses, num_courses - 1)
-
-        # No more schedules to make, so return master list
-        if finished:
-            return schedule_list
-
-# Updates given schedule to match sections corresponding to the counter_array. If a conflict is found, it iterates
-# and recurses until success. Returns True if there are no more schedules to be made, False otherwise
-def update_schedule(schedule, counter_array, courses, index):
-    # Increment counter past failed combination
-    finished = increment_counter(counter_array, courses, index)
-    
-    # Return if the last possible combination failed
-    if finished:
-        return True
-
-    schedule.clear()
-
-    # Loop through all courses
-    num_courses = len(courses)
-    for course_idx in range(num_courses):
-        counter = counter_array[course_idx]
-        section = courses[course_idx].sections[counter]
-        
-        success = schedule.add_section(section)
-
-        # Found another conflict, recurse to account for it
-        if not success:
-            return update_schedule(schedule, counter_array, courses, index)
-
-    # Made a schedule successfully, we are not done yet
-    return False
-'''
-
 inc = 0
 # Traverses the given CourseList with a modified brute force algorithm
 # Returns list containing all possible Schedule objects
@@ -187,7 +97,7 @@ def make_schedule(counter_array, courses, num_courses):
     
     # Successfully made a schedule
     return schedule
-    
+
 # By default increases last counter by 1. If there are no more sections for a counter, then increments the previous one
 # recursively. Returns True when there are no more course combinations possible (i.e. first course runs out of sections)
 # Returns False otherwise
