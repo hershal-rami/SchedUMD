@@ -1,9 +1,7 @@
 # SchedUMD
 Set-Up:
 -Remove old versions of Python and install Python 3.8.3
--Use pip to install requests
-    `pip install requests` for Windows
-    `sudo pip install requests` for OSX/Linux
+-Install `requests`
 
 Useful Links:
 https://umd.io/
