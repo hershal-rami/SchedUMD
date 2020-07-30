@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="dark_theme.css">
+        <script type="text/javascript" src="index.js"></script>
     </head>
 
     <body>
@@ -12,37 +13,15 @@
             <div class="logo">
                 <h1>SchedUMD</h1>
             </div>
-
-            <div class="button semesters">
-                <button onclick = "showSemesters()" class="semester-list">Fall 2020</button>
-                <div id = semesters-dropdown class="semesters-content">
+            
+            <div class="button semester-dropdown">
+                <button onclick = "showSemesters()" class="semester-dropbtn">Fall 2020</button>
+                <div id="myDropdown" class="semester-content">
                     <a href="#">Link 1</a>
                     <a href="#">Link 2</a>
                     <a href="#">Link 3</a>
                 </div>
-
-                <script>
-                    /* When the user clicks on the button, 
-                    toggle between hiding and showing the dropdown content */
-                    function showSemesters() {
-                      document.getElementById("semesters-dropdown").classList.toggle("show");
-                    }
-                    
-                    // Close the dropdown if the user clicks outside of it
-                    window.onclick = function(event) {
-                      if (!event.target.matches('.semester-list')) {
-                        var dropdowns = document.getElementsByClassName("semesters-content");
-                        var i;
-                        for (i = 0; i < dropdowns.length; i++) {
-                          var openDropdown = dropdowns[i];
-                          if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                          }
-                        }
-                      }
-                    }
-                </script>
-            </div>    
+            </div>
         </div>
     </body>
 </html>

@@ -22,50 +22,44 @@ body{
     display: inline;
     justify-content: center;
     align-items: center;
-    padding: 35px 10px;
+    padding: 30px 20px;
     font-family: Adobe Bembo;
 }
 
-.semester-list {
+.semester-dropbtn {
     background-color: #2b2b2b;
     color: #e6e6e6;
-    padding: 12px 12px;
-    font-size: 15px;
+    padding: 12px;
+    font-size: 16px;
     border: none;
     cursor: pointer;
 }
-
-.button semesters {
+  
+.semester-dropbtn:hover, .semester-dropbtn:focus {
+    background-color: #3e3e3e;
+}
+  
+.button semester-dropdown {
     position: relative;
     display: inline-block;
 }
-
-.semesters-content {
+  
+.semester-content {
     display: none;
     position: absolute;
-    background-color: #2b2b2b;
+    background-color: white;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-
-.semesters-content a {
-    color: white;
+  
+.semester-content a {
+    color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
-
-.semesters-content a:hover {
-    background-color: #3e3e3e;
-}
-
-.semesters:hover .semesters-content {
-    display: block;
-}
-
-.semesters:hover .semester-list {
-    background-color: #3e3e3e;
-}
+  
+.semester-content a:hover {background-color: #b3b3b3}
 
 .show {display:block;}
