@@ -1,0 +1,71 @@
+body{
+    font-family: Adobe Bembo;
+    margin: 0;
+    background:#2b2b2b;
+    color: #e6e6e6;
+}
+
+.header {
+    display: flex;
+    align-items: stretch;
+    background: #e03a3e;
+}
+
+.logo {
+    display: inline;
+    text-align: left;
+    font-size: 20px;
+    padding: 0px 30px;
+}
+
+.button {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 10px;
+    font-family: Adobe Bembo;
+}
+
+.semester-list {
+    background-color: #2b2b2b;
+    color: #e6e6e6;
+    padding: 12px 12px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.button semesters {
+    position: relative;
+    display: inline-block;
+}
+
+.semesters-content {
+    display: none;
+    position: absolute;
+    background-color: #2b2b2b;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.semesters-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.semesters-content a:hover {
+    background-color: #3e3e3e;
+}
+
+.semesters:hover .semesters-content {
+    display: block;
+}
+
+.semesters:hover .semester-list {
+    background-color: #3e3e3e;
+}
+
+.show {display:block;}

@@ -1,0 +1,17 @@
+body{
+    font-family: Adobe Bembo;
+    margin: 0;
+    background: #e6e6e6;
+    color: black;
+}
+
+.header{
+    padding: 10px;
+    text-align: left;
+    background: #e03a3e;
+    font-size: 20px;
+}
+
+.content {
+    padding: 20px;
+}
